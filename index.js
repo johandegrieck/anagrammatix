@@ -18,9 +18,15 @@ app.configure(function() {
     // Serve static html, js, css, and image files from the 'public' directory
     app.use(express.static(path.join(__dirname,'public')));
 });
+/*SPECIFIC CONFIG FOR OPENSHIFT*/
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);  
+app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1"); 
 
-// Create a Node.js based http server on port 8080
-var server = require('http').createServer(app).listen(8080);
+/*END OPENSHIFT SPECIFIC CODE */
+// Create a Node.js based http server on openSHIFT
+var server = require('http').createServer(app).listen(app.get('port'), app.get('ipaddr'), function(){
+	console.log('Express server listening on  IP: ' + app.get('ipaddr') + ' and port ' + app.get('port'));
+});
 
 // Create a Socket.IO server and attach it to the http server
 var io = require('socket.io').listen(server);
