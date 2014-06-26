@@ -11,6 +11,6 @@
 	"scripts": {
 	    "start": "node app"
   	},
-  	"main":"index.js"
+  	"main":"app.js"
 }
 
