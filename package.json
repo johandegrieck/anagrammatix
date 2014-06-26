@@ -7,5 +7,10 @@
         "express": "3.x",
         "socket.io":"0.9"
     }
+    ,
+	"scripts": {
+	    "start": "node app"
+  	},
+  	"main":"index.js"
 }
 
