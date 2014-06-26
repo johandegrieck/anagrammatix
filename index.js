@@ -1,8 +1,6 @@
 // Import the Express module
 var express = require('express');
 
-// Import the 'path' module (packaged with Node.js)
-var path = require('path');
 
 // Create a new instance of Express
 var app = express();
@@ -17,7 +15,7 @@ app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 // Turn down the logging activity
 app.use(express.logger('dev'));
 // Serve static html, js, css, and image files from the 'public' directory
-app.use(express.static(path.join(__dirname,'public')));
+app.use(express.static(__dirname + '/public'));
 
 // Create a Node.js based http server on port 3000
 var server = require('http').createServer(app).listen(app.get('port'), app.get('ipaddr'), function(){
